@@ -63,6 +63,10 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.AWS_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
+        
+          echo ${{ github.ref_name }}
+
+                  
           # Check if Blue exists, deploy if missing
           kubectl get deployment fintech1-blue || kubectl apply -f <(sed "s/<IMAGE_TAG>/$IMAGE_TAG/g" ek8s/blue-deployment.yaml)
           kubectl rollout status deployment/fintech1-blue
