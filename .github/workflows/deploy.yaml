@@ -88,7 +88,7 @@ jobs:
           NAMESPACE: ${{ github.ref_name }}                          
         run: |
           kubectl -n $NAMESPACE get deployment fintech1-green -o jsonpath='{.status.readyReplicas}'        
-          kubectl -n $NAMESPACE patch service fintech1-service -p '{"spec":{"selector":{"app":"fintech1-green"}}}'
+          kubectl -n $NAMESPACE patch service fintech1 -p '{"spec":{"selector":{"app":"fintech1-green"}}}'
           sleep 10
 
       - name: Clean Up Blue Deployment
