@@ -64,8 +64,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           NAMESPACE: ${{ github.ref_name }}          
 
-        run: |   
-                                       
+        run: |                                          
           # Check if Blue exists, deploy if missing
           kubectl -n $NAMESPACE get deployment fintech1-blue || kubectl apply -f <(sed "s/<IMAGE_TAG>/$IMAGE_TAG/g" ek8s/blue-deployment.yaml)
           kubectl -n $NAMESPACE rollout status deployment/fintech1-blue
