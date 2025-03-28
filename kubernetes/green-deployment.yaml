@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fintech1-green
-  namespace: main
+  namespace: <NAMESPACE>
   labels:
     app: fintech1-green
 spec:
