@@ -67,7 +67,7 @@ jobs:
 
         run: |                                          
           # Check if Blue exists, deploy if missing
-          kubectl -n $NAMESPACE get deployment fintech1-blue || kubectl apply -f <(sed "s/<IMAGE_TAG>/$IMAGE_TAG/g" kubernetes/blue-deployment.yaml)
+          kubectl -n $NAMESPACE get deployment fintech1-blue || kubectl apply -f <(sed -e "s/<IMAGE_TAG>/$IMAGE_TAG/g" -e "s/^\s*namespace: .*/namespace: $NAMESPACE/" kubernetes/blue-deployment.yaml)
           kubectl -n $NAMESPACE rollout status deployment/fintech1-blue
 
           kubectl -n $NAMESPACE get deployment fintech1-blue -o jsonpath='{.status.readyReplicas}'
